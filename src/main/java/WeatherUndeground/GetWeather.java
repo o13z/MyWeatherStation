@@ -1,5 +1,7 @@
 package WeatherUndeground;
 
+import WeatherUndeground.ResponseClasses.WeatherResponse;
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -25,6 +27,13 @@ public class GetWeather {
 
         String output = clientResponse.getEntity(String.class);
 
-        System.out.println(output);
+        Gson gson = new Gson();
+        WeatherResponse responseClass = gson.fromJson(output, WeatherResponse.class);
+
+        System.out.println(responseClass.getCurrent_observation().getDisplay_location().getFull());
+        System.out.println(responseClass.getCurrent_observation().getTemp_c() + " / " + responseClass.getCurrent_observation().getFeelslike_c());
+        System.out.println(responseClass.getCurrent_observation().getObservation_time());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+//        System.out.println(output);
     }
 }
