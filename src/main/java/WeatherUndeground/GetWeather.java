@@ -10,7 +10,8 @@ import javax.ws.rs.core.MediaType;
 
 public class GetWeather {
 
-    private String baseURL = "http://api.wunderground.com/api/3d7a4bb220d83404/conditions/RU/q/";
+    private final String baseURL = "http://api.wunderground.com/api/3d7a4bb220d83404/conditions/RU/q/";
+    private final String DEGREE  = "\u00b0";
 
     public void getCurrentWeather(String location) {
         String URL = baseURL + location;
@@ -31,8 +32,11 @@ public class GetWeather {
         WeatherResponse responseClass = gson.fromJson(output, WeatherResponse.class);
 
         System.out.println(responseClass.getCurrent_observation().getDisplay_location().getFull());
-        System.out.println(responseClass.getCurrent_observation().getTemp_c() + " / " + responseClass.getCurrent_observation().getFeelslike_c());
+        System.out.println(responseClass.getCurrent_observation().getTemp_c()+ DEGREE + " / " + responseClass.getCurrent_observation().getFeelslike_c() + DEGREE);
         System.out.println(responseClass.getCurrent_observation().getObservation_time());
+        System.out.println("Humidity: " + responseClass.getCurrent_observation().getRelative_humidity());
+        System.out.println("Wind kph: " + responseClass.getCurrent_observation().getWind_kph());
+        System.out.println(responseClass.getCurrent_observation().getWeather());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
 //        System.out.println(output);
     }

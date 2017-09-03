@@ -13,7 +13,7 @@ public class RunProgram {
     private static void askForChoise() {
         Scanner reader = new Scanner(System.in);
         System.out.println("1. Get local weather ");
-        System.out.println("2. chisinau airport ");
+        System.out.println("2. Chisinau airport ");
         System.out.println("3. Enter location: ");
         int n = reader.nextInt();
 
